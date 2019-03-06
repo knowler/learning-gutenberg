@@ -1,5 +1,5 @@
-const { registerBlockType } = wp.blocks
-const { RichText } = wp.editor
+import { registerBlockType } from '@wordpress/blocks'
+import { RichText } from '@wordpress/editor'
 
 registerBlockType('blocks/cta', {
   title: 'Call To Action',
@@ -12,23 +12,19 @@ registerBlockType('blocks/cta', {
       selector: 'p',
     },
   },
-  edit({ attributes, className, setAttributes }) {
-    return (
-      <RichText
-        tagName='p'
-        className={className}
-        onChange={content => setAttributes({ content })}
-        value={attributes.content}
-      />
-    )
-  },
-  save({ attributes }) {
-    return (
-      <RichText.Content
-        tagName='p'
-        value={attributes.content}
-      />
-    )
-  },
+  edit: ({ attributes, className, setAttributes }) => (
+    <RichText
+      tagName='p'
+      className={className}
+      onChange={content => setAttributes({ content })}
+      value={attributes.content}
+    />
+  ),
+  save: ({ attributes }) => (
+    <RichText.Content
+      tagName='p'
+      value={attributes.content}
+    />
+  ),
 })
 
