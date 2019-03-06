@@ -11,6 +11,7 @@ add_action('init', function () {
         'wp-blocks',
         'wp-element',
         'wp-editor',
+        'wp-i18n',
     ]);
 
     register_block_type('blocks/cta', [
