@@ -8,6 +8,11 @@
       "email": "nathan@knowler.me"
     }
   ],
+  "autoload": {
+    "psr-4": {
+      "Knowler\\Blocks\\": "src/"
+    }
+  },
   "require": {},
   "require-dev": {
     "squizlabs/php_codesniffer": "^3.4"

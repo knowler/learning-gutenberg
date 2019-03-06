@@ -18,10 +18,8 @@ module.exports = {
     source: false,
     publicPath: false,
   },
-  context: path.resolve(__dirname, 'src'),
-  entry: {
-    'cta': './blocks/cta/index.js',
-  },
+  context: path.resolve(__dirname, 'resources'),
+  entry: require('./resources/blocks.json'),
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'blocks/[name].js',

@@ -6,15 +6,13 @@
  * Version:     0.1.0
  * Plugin URI:  http://localhost
  */
-add_action('init', function () {
-    wp_register_script('blocks/cta', plugins_url('dist/blocks/cta.js', __FILE__), [
-        'wp-blocks',
-        'wp-element',
-        'wp-editor',
-        'wp-i18n',
-    ]);
 
-    register_block_type('blocks/cta', [
-        'editor_script' => 'blocks/cta'
-    ]);
+!file_exists($composer = __DIR__ . '/vendor/autoload.php') || require_once $composer;
+
+add_action('init', function () {
+    $blocks = json_decode(file_get_contents(__DIR__ . '/resources/blocks.json'));
+
+    foreach ((array) $blocks as $block => $value) {
+        new Knowler\Blocks\Block($block);
+    }
 });
