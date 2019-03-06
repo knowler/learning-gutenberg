@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Plugin Name: Blocks
  * Description: Some custom blocks.
@@ -12,7 +13,7 @@
 add_action('init', function () {
     $blocks = json_decode(file_get_contents(__DIR__ . '/resources/blocks.json'));
 
-    foreach ((array) $blocks as $block => $value) {
+    foreach ((array) $blocks as $block => $filepath) {
         new Knowler\Blocks\Block($block);
     }
 });
