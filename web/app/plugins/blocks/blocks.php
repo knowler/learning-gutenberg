@@ -10,12 +10,14 @@
 
 !file_exists($composer = __DIR__ . '/vendor/autoload.php') || require_once $composer;
 
-add_action('init', function () {
-    if (file_exists($blocksConfigPath = __DIR__ . '/resources/blocks.json')) {
-        $blocks = (array) json_decode(file_get_contents($blocksConfigPath));
+use Knowler\Blocks\Block;
 
-        foreach ($blocks as $block => $filepath) {
-            new Knowler\Blocks\Block($block);
+add_action('init', function () {
+    if (file_exists($config = __DIR__ . '/resources/blocks.json')) {
+        $blocks = (array) json_decode(file_get_contents($config));
+
+        foreach ($blocks as $name => $filepath) {
+            Block::register($name);
         }
     }
 });

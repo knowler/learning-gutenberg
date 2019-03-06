@@ -4,7 +4,7 @@ namespace Knowler\Blocks;
 
 class Block
 {
-    public function __construct($name)
+    public static function register($name)
     {
         wp_register_script("blocks/{$name}", plugins_url("dist/blocks/{$name}.js", dirname(__FILE__)), [
             'wp-blocks',

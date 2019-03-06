@@ -45,6 +45,7 @@ add_action('after_setup_theme', function () {
      * Gutenberg support
      */
     add_theme_support('align-wide');
+    add_theme_support('editor-styles');
 
     /**
      * Enable plugins to manage the document title
