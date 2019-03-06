@@ -1,0 +1,20 @@
+{
+  "name": "knowler/blocks",
+  "type": "wordpress-plugin",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Nathan Knowler",
+      "email": "nathan@knowler.me"
+    }
+  ],
+  "require": {},
+  "require-dev": {
+    "squizlabs/php_codesniffer": "^3.4"
+  },
+  "scripts": {
+    "lint": [
+      "phpcs --ignore=vendor,tests,node_modules --extensions=php --standard=PSR12 ."
+    ]
+  }
+}
