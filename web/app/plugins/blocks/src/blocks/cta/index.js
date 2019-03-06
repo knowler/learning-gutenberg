@@ -26,7 +26,7 @@ registerBlockType('blocks/cta', {
   styles: [
     {
       name: 'default',
-      label: 'Standard',
+      label: __('Standard'),
       isDefault: true,
     },
   ],
