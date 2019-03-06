@@ -4,17 +4,24 @@ namespace Knowler\Blocks;
 
 class Block
 {
+    /**
+     * Register block
+     *
+     * @param string $name The (file)name of the block
+     */
     public static function register($name)
     {
-        wp_register_script("blocks/{$name}", plugins_url("dist/blocks/{$name}.js", dirname(__FILE__)), [
+        $this->name = "blocks/{$name}";
+
+        wp_register_script($this->name, plugins_url("dist/{$this->name}.js", dirname(__FILE__)), [
             'wp-blocks',
             'wp-editor',
             'wp-element',
             'wp-i18n',
         ]);
 
-        register_block_type("blocks/{$name}", [
-            'editor_script' => "blocks/{$name}"
+        register_block_type($this->name, [
+            'editor_script' => $this->name,
         ]);
     }
 }

@@ -1,23 +1,24 @@
 <?php
 
 /**
- * Plugin Name: Blocks
- * Description: Some custom blocks.
- * Author:      Nathan Knowler
- * Version:     0.1.0
- * Plugin URI:  http://localhost
+ * Plugin Name:     Blocks
+ * Description:     Some custom blocks.
+ * Author:          Nathan Knowler
+ * Version:         0.1.0
  */
 
-!file_exists($composer = __DIR__ . '/vendor/autoload.php') || require_once $composer;
+if (file_exists($composer = __DIR__ . '/vendor/autoload.php')) {
+    /** Load the Composer dependencies */
+    require_once $composer;
 
-use Knowler\Blocks\Block;
+    /** Register blocks from config */
+    add_action('init', function () {
+        if (file_exists($config = __DIR__ . '/resources/blocks.json')) {
+            $blocks = (array) json_decode(file_get_contents($config));
 
-add_action('init', function () {
-    if (file_exists($config = __DIR__ . '/resources/blocks.json')) {
-        $blocks = (array) json_decode(file_get_contents($config));
-
-        foreach ($blocks as $name => $filepath) {
-            Block::register($name);
+            foreach ($blocks as $name => $filepath) {
+                Knowler\Blocks\Block::register($name);
+            }
         }
-    }
-});
+    });
+}
