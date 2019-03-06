@@ -19,7 +19,7 @@ module.exports = {
   },
   context: path.resolve(__dirname, 'src'),
   entry: {
-    'cta': './blocks/cta.js',
+    'cta': './blocks/cta/index.js',
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -29,6 +29,7 @@ module.exports = {
   externals: {
     '@wordpress/blocks': 'wp.blocks',
     '@wordpress/editor': 'wp.editor',
+    '@wordpress/i18n': 'wp.i18n',
   },
   module: {
     rules: [

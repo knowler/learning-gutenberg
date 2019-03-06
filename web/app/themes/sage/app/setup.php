@@ -20,6 +20,14 @@ add_action('wp_enqueue_scripts', function () {
 }, 100);
 
 /**
+ * Dequeue Gutenberg CSS
+ * @link https://wordpress.org/gutenberg/?s=dequeue (404)
+ */
+add_action('wp_enqueue_scripts', function () {
+    wp_dequeue_style('wp-block-library');
+}, 100);
+
+/**
  * Theme setup
  */
 add_action('after_setup_theme', function () {
@@ -32,6 +40,11 @@ add_action('after_setup_theme', function () {
     add_theme_support('soil-nav-walker');
     add_theme_support('soil-nice-search');
     add_theme_support('soil-relative-urls');
+
+    /**
+     * Gutenberg support
+     */
+    add_theme_support('align-wide');
 
     /**
      * Enable plugins to manage the document title
