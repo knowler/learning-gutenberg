@@ -7,7 +7,7 @@
  * Plugin URI:  http://localhost
  */
 add_action('init', function () {
-    wp_register_script('blocks/cta', plugins_url('blocks/dist/blocks/cta.js'), [
+    wp_register_script('blocks/cta', plugins_url('dist/blocks/cta.js', __FILE__), [
         'wp-blocks',
         'wp-element',
         'wp-editor',
