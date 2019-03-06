@@ -7,6 +7,8 @@
  * Version:         0.1.0
  */
 
+namespace Knowler\Blocks;
+
 if (file_exists($composer = __DIR__ . '/vendor/autoload.php')) {
     /** Load the Composer dependencies */
     require_once $composer;
@@ -17,7 +19,7 @@ if (file_exists($composer = __DIR__ . '/vendor/autoload.php')) {
             $blocks = (array) json_decode(file_get_contents($config));
 
             foreach ($blocks as $name => $filepath) {
-                Knowler\Blocks\Block::register($name);
+                Block::register($name);
             }
         }
     });
