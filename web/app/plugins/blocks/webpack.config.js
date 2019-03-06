@@ -1,6 +1,7 @@
 const path = require('path');
 
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
   stats: {
@@ -46,6 +47,23 @@ module.exports = {
           },
         },
       },
+    ],
+  },
+  optimization: {
+    minimize: true,
+    minimizer: [
+      new TerserPlugin({
+        cache: true,
+        parallel: true,
+        sourceMap: true,
+        terserOptions: {
+          ecma: 8,
+          compress: {
+            warnings: true,
+            drop_console: true,
+          },
+        },
+      }),
     ],
   },
   plugins: [
