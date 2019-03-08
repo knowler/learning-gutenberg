@@ -11,17 +11,17 @@ class Block
      */
     public static function register($name)
     {
-        $this->name = "blocks/{$name}";
+        $block = "blocks/{$name}";
 
-        wp_register_script($this->name, plugins_url("dist/{$this->name}.js", dirname(__FILE__)), [
+        wp_register_script($block, plugins_url("dist/{$block}.js", dirname(__FILE__)), [
             'wp-blocks',
             'wp-editor',
             'wp-element',
             'wp-i18n',
         ]);
 
-        register_block_type($this->name, [
-            'editor_script' => $this->name,
+        register_block_type($block, [
+            'editor_script' => $block,
         ]);
     }
 }
