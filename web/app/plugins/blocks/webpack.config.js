@@ -31,8 +31,10 @@ module.exports = {
     '@wordpress/i18n': 'wp.i18n',
   },
   resolve: {
-    '@blocks': path.resolve(__dirname, 'blocks'),
-    '@components': path.resolve(__dirname, 'components'),
+    alias: {
+      '@blocks': path.resolve(__dirname, 'resources/blocks'),
+      '@components': path.resolve(__dirname, 'resources/components'),
+    },
   },
   module: {
     rules: [
