@@ -30,6 +30,10 @@ module.exports = {
     '@wordpress/editor': 'wp.editor',
     '@wordpress/i18n': 'wp.i18n',
   },
+  resolve: {
+    '@blocks': path.resolve(__dirname, 'blocks'),
+    '@components': path.resolve(__dirname, 'components'),
+  },
   module: {
     rules: [
       {

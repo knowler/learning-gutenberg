@@ -1,8 +1,8 @@
 import { registerBlockType } from '@wordpress/blocks'
 import { __ } from '@wordpress/i18n'
 
-import edit from './edit'
-import save from './save'
+import edit from '@blocks/cta/edit'
+import save from '@blocks/cta/save'
 
 registerBlockType('blocks/cta', {
   title: __('Call To Action'),

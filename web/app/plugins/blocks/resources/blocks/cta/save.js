@@ -1,5 +1,5 @@
 import { RichText } from '@wordpress/editor'
-import { CallToAction } from '../../components/CallToAction'
+import { CallToAction } from '@components/CallToAction'
 
 export default ({ attributes, className }) => (
   <CallToAction>
