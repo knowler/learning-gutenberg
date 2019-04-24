@@ -6,29 +6,36 @@ const desire = require('./util/desire');
 
 const userConfig = merge(desire(`${__dirname}/../config`), desire(`${__dirname}/../config-local`));
 
-const isProduction = !!((argv.env && argv.env.production) || argv.p);
-const rootPath = (userConfig.paths && userConfig.paths.root)
-  ? userConfig.paths.root
-  : process.cwd();
+const isProduction = !!((argv.env && argv.env.production) || argv.p || argv.mode === 'production');
+const rootPath = userConfig.paths && userConfig.paths.root ? userConfig.paths.root : process.cwd();
 
-const config = merge({
-  open: true,
-  copy: 'images/**/*',
-  proxyUrl: 'http://localhost:3000',
-  cacheBusting: '[name]_[hash]',
-  paths: {
-    root: rootPath,
-    assets: path.join(rootPath, 'resources/assets'),
-    dist: path.join(rootPath, 'dist'),
+const config = merge(
+  {
+    open: true,
+    proxyUrl: 'http://localhost:3000',
+    cacheBusting: '[name]_[hash]',
+    paths: {
+      root: rootPath,
+      assets: path.join(rootPath, 'resources/assets'),
+      dist: path.join(rootPath, 'dist'),
+    },
+    enabled: {
+      sourceMaps: !isProduction,
+      optimize: isProduction,
+      imagemin: isProduction,
+      cacheBusting: isProduction,
+      watcher: !!argv.watch,
+      purgecss: isProduction,
+    },
+    patterns: {
+      copy: 'images/**/*',
+      html: ['config/*.php', 'app/**/*.php', 'resources/views/**/*.php', 'resources/lang/**/*'],
+    },
   },
-  enabled: {
-    sourceMaps: !isProduction,
-    optimize: isProduction,
-    cacheBusting: isProduction,
-    watcher: !!argv.watch,
-  },
-  watch: [],
-}, userConfig);
+  userConfig
+);
+
+config.patterns.html = config.patterns.html.map(pattern => `${rootPath}/${pattern}`);
 
 module.exports = merge(config, {
   env: Object.assign({ production: isProduction, development: !isProduction }, argv.env),
@@ -44,7 +51,7 @@ if (process.env.NODE_ENV === undefined) {
  * If your publicPath differs between environments, but you know it at compile time,
  * then set SAGE_DIST_PATH as an environment variable before compiling.
  * Example:
- *   SAGE_DIST_PATH=/wp-content/themes/sage/dist/ yarn build:production
+ *   SAGE_DIST_PATH=/wp-content/themes/sage/dist yarn build:production
  */
 if (process.env.SAGE_DIST_PATH) {
   module.exports.publicPath = process.env.SAGE_DIST_PATH;
