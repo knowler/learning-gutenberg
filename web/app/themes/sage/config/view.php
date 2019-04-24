@@ -81,6 +81,7 @@ return [
 
     'composers' => [
         App\Composers\Title::class,
+        App\Composers\Block::class,
     ],
 
 

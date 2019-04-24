@@ -56,7 +56,7 @@ array_map(function ($file) use ($sage_error) {
             __('File not found', 'sage')
         );
     }
-}, ['helpers', 'setup', 'filters', 'admin']);
+}, ['helpers', 'setup', 'filters', 'admin', 'gutenberg']);
 
 /**
  * Enable sage features
